@@ -28,7 +28,7 @@ public class Booking {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "seat_row_id", nullable = false)
+    @JoinColumn(name = "row_id", nullable = false)
     private Row row;
 
     @Column(name = "seat_number", nullable = false)

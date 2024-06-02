@@ -38,7 +38,8 @@ public class SecurityConfig {
                         req -> req.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers(
                                         "/login/**",
-                                        "/register/**"
+                                        "/register/**",
+                                        "/api/v1/movies/components/**"
                                 )
                                 .permitAll()
                                 .anyRequest()
