@@ -1,8 +1,6 @@
 package com.miromax.services.impl;
 
-import com.miromax.dtos.MovieComponentDto;
-import com.miromax.dtos.MovieDto;
-import com.miromax.dtos.MoviePostDto;
+import com.miromax.dtos.*;
 import com.miromax.exceptions.MovieNotFoundException;
 import com.miromax.mappers.MovieMapper;
 import com.miromax.models.Movie;
@@ -35,18 +33,31 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<MovieComponentDto> getActiveMoviesWithSessionsByDate(LocalDate date) {
-        List<Movie> movies = movieRepository.findActiveMoviesWithSessions(Status.ACTIVE, Status.UPCOMING, date);
+    public List<MovieComponentDto> getActiveMoviesWithSessionsByDate(LocalDate date, Long locationId) {
+        List<Movie> movies = movieRepository.findActiveMoviesWithSessions(Status.ACTIVE, Status.UPCOMING, date, locationId);
         return movies.stream()
                 .map(MovieMapper.MAPPER::toMovieComponentDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public MovieDto findMovieById(Long id) {
+    public List<MovieUpcomingComponentDto> getUpcomingMovies() {
+        List<Movie> movies = movieRepository.findUpcomingMovies(Status.UPCOMING, LocalDate.now());
+        return MovieMapper.MAPPER.toMovieUpcomingComponentDtoList(movies);
+    }
+
+    @Override
+    public MovieShortDto findMovieById(Long id) {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
-        Movie movie = optionalMovie.orElseThrow(() -> new MovieNotFoundException("Movie not found with id: " + id));
-        return MovieMapper.MAPPER.toMovieDto(movie);
+        Movie movie = optionalMovie.orElseThrow(() -> new MovieNotFoundException("Movie with id: " + id + " not found"));
+        return MovieMapper.MAPPER.toMovieShortDto(movie);
+    }
+
+    @Override
+    public MovieInfoDto findMovieInfoById(Long id) {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        Movie movie = optionalMovie.orElseThrow(() -> new MovieNotFoundException("Movie with id: " + id + " not found"));
+        return MovieMapper.MAPPER.toMovieInfoDto(movie);
     }
 
     @Override
@@ -69,5 +80,11 @@ public class MovieServiceImpl implements MovieService {
         }
         Movie savedMovie = movieRepository.save(movie);
         return MovieMapper.MAPPER.toMovieDto(savedMovie);
+    }
+
+    @Override
+    public List<MovieComponentDto> searchInMovies(String value) {
+        List<Movie> movieList = movieRepository.searchInMovies(value);
+        return MovieMapper.MAPPER.toMovieComponentDtoList(movieList);
     }
 }

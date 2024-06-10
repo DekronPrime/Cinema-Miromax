@@ -1,0 +1,46 @@
+.trailer-container {
+  /* outline: 1px solid red; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* width: 100%; */
+  /* border: 1px solid red; */
+  /* height: 100vh; */
+  /* margin-top: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 1);
+  visibility: hidden;
+  z-index: 500;
+}
+
+.active {
+  visibility: visible;
+  z-index: 1000;
+}
+
+.icon-close {
+  color: white;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  /* border: 1px solid lime; */
+  transition: 300ms ease;
+  cursor: pointer;
+  font-size: 22pt;
+}
+
+.icon-close:hover {
+  transform: scale(1.5) rotate(90deg);
+}
+
+.trailer-container > iframe {
+  width: 80%;
+  border-radius: 7.5px;
+  /* height: 90%; */
+  /* aspect-ratio: 2 / 1; */
+  aspect-ratio: 16 / 9;
+}

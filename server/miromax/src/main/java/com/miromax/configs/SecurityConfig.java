@@ -39,7 +39,12 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         "/login/**",
                                         "/register/**",
-                                        "/api/v1/movies/components/**"
+                                        "/api/v1/movies/components/**",
+                                        "/api/v1/movies/upcoming/**",
+                                        "/api/v1/movies/cinema-locations/**",
+                                        "/api/v1/movies/search/**",
+                                        "/api/v1/movies/**",
+                                        "/api/v1/movies/info/**"
                                 )
                                 .permitAll()
                                 .anyRequest()

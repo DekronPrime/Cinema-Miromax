@@ -2,13 +2,10 @@ package com.miromax.mappers;
 
 import com.miromax.dtos.*;
 import com.miromax.models.Movie;
-import com.miromax.models.Session;
-import com.miromax.models.enums.Status;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,26 +16,13 @@ public interface MovieMapper {
     Movie toMovieEntity(MoviePostDto moviePostDto);
 
     MovieDto toMovieDto(Movie movie);
-//    @AfterMapping
-//    default void mapActors(Movie movie, @MappingTarget MovieDto movieDto) {
-//        if (movie.getActors() != null) {
-//            List<ActorDto> actorDtos = movie.getActors().stream()
-//                    .map(actor -> {
-//                        ActorDto actorDto = new ActorDto();
-//                        actorDto.setId(actor.getId());
-//                        actorDto.setFirstName(actor.getFirstName());
-//                        actorDto.setMiddleName(actor.getMiddleName());
-//                        actorDto.setLastName(actor.getLastName());
-//                        actorDto.setPopularity(actor.getPopularity());
-//                        actorDto.setCountry(CountryMapper.MAPPER.toCountryShortDto(actor.getCountry())); // Мапуємо країну
-//                        return actorDto;
-//                    })
-//                    .collect(Collectors.toList());
-//            movieDto.setActors(actorDtos);
-//        }
-//    }
 
     MovieComponentDto toMovieComponentDto(Movie movie);
+
+    MovieUpcomingComponentDto toMovieUpcomingComponentDto(Movie movie);
+
+    MovieShortDto toMovieShortDto(Movie movie);
+    MovieInfoDto toMovieInfoDto(Movie movie);
 
     default Page<MovieDto> toMovieDtoPage(Page<Movie> moviePage) {
         return moviePage.map(this::toMovieDto);
@@ -50,12 +34,15 @@ public interface MovieMapper {
                 .collect(Collectors.toList());
     }
 
-    default List<SessionInfoDto> mapSessions(List<Session> sessions) {
-        return sessions.stream()
-                .filter(session -> session.getStatus() == Status.UPCOMING && session.getStartTime().toLocalDate().equals(LocalDate.now()))
-                .map(this::toSessionInfoDto)
+    default List<MovieComponentDto> toMovieComponentDtoList(List<Movie> movieList) {
+        return movieList.stream()
+                .map(this::toMovieComponentDto)
                 .collect(Collectors.toList());
     }
 
-    SessionInfoDto toSessionInfoDto(Session session);
+    default List<MovieUpcomingComponentDto> toMovieUpcomingComponentDtoList(List<Movie> movieList) {
+        return movieList.stream()
+                .map(this::toMovieUpcomingComponentDto)
+                .collect(Collectors.toList());
+    }
 }

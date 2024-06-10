@@ -1,0 +1,84 @@
+.loader-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  z-index: 9999;
+}
+
+.overlay-hidden {
+  display: none;
+}
+
+.loader {
+  --uib-size: 120px;
+  --uib-color: black;
+  --uib-speed: 3s;
+  --uib-dot-size: calc(var(--uib-size) * 0.25);
+  margin-top: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--uib-size);
+  height: var(--uib-dot-size);
+  filter: url("#uib-jelly-ooze");
+}
+
+.dot {
+  position: absolute;
+  top: calc(50% - var(--uib-dot-size) / 2);
+  left: calc(0px - var(--uib-dot-size) / 2);
+  display: block;
+  height: var(--uib-dot-size);
+  width: var(--uib-dot-size);
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  animation: stream var(--uib-speed) linear infinite both;
+  transition: background-color 0.3s ease;
+}
+
+.dot:nth-child(1) {
+  background: rgba(82, 186, 219, 1);
+}
+
+.dot:nth-child(2) {
+  animation-delay: calc(var(--uib-speed) * -0.2);
+  background: rgba(112, 161, 222, 1);
+}
+
+.dot:nth-child(3) {
+  animation-delay: calc(var(--uib-speed) * -0.4);
+  background: rgba(167, 119, 227, 1);
+}
+
+.dot:nth-child(4) {
+  animation-delay: calc(var(--uib-speed) * -0.6);
+  background: rgba(205, 89, 231, 1);
+}
+
+.dot:nth-child(5) {
+  animation-delay: calc(var(--uib-speed) * -0.8);
+  background: rgba(255, 255, 255, 1);
+}
+
+@keyframes stream {
+  0%,
+  100% {
+    transform: translateX(0) scale(0);
+  }
+
+  50% {
+    transform: translateX(calc(var(--uib-size) * 0.5)) scale(1);
+  }
+
+  99.999% {
+    transform: translateX(calc(var(--uib-size))) scale(0);
+  }
+}

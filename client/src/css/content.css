@@ -1,0 +1,264 @@
+.main > #main-content {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  /* padding: 3rem 0; */
+}
+
+#container {
+  /* border: 1px solid var(--bg-dark); */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+}
+
+.main > #main-content > .banner {
+  position: relative;
+  margin: 2rem 1rem 1rem 1rem;
+  height: 150px;
+  width: 95%;
+  /* background-image: url("../img/cinema-generator.jpg");
+  background-position: center bottom; */
+  background-image: url("../img/cinema-generator2.jpg");
+  background-position: center 55%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 32pt;
+  font-weight: bold;
+  color: var(--bg-light);
+  border-radius: var(--border-radius);
+}
+
+.main > #main-content > .banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.5)
+  );
+  /* z-index: 1; */
+  border-radius: var(--border-radius);
+}
+
+.main > #main-content > .banner > span {
+  position: relative;
+  z-index: 2;
+}
+
+.main > #main-content > .banner > span > i {
+  color: yellow;
+}
+
+.movie-control-panel {
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  width: calc(95% - 2rem);
+  margin: 0 0 1rem 0;
+}
+
+.dropdown {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  justify-content: space-between;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#location-dropdown > .dropdown-button,
+#sort-dropdown {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+#sort-dropdown {
+  gap: 0.5rem;
+}
+
+#sort-dropdown > .dropdown-button {
+  width: 65%;
+}
+
+#sort-dropdown > .sort-order {
+  width: 35%;
+}
+
+.sort-order > .fa-arrow-down-short-wide,
+.sort-order > .fa-arrow-down-wide-short {
+  transition: 0.3s ease;
+}
+
+.sort-order-toggle {
+  transform: rotateX(180deg);
+}
+
+.dropdown > .dropdown-button,
+.sort-order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-button,
+.sort-order {
+  background: var(--bg-gray);
+  border: none;
+  color: var(--bg-dark);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-button,
+.dropdown-content,
+.sort-order {
+  font-size: 12pt;
+}
+
+.dropdown-button > .fa-location-dot,
+.dropdown-item > .fa-location-dot,
+.sort-order > .fa-arrow-down-short-wide,
+.sort-order > .fa-arrow-down-wide-short {
+  font-size: 18pt;
+}
+
+.dropdown-button > .fa-chevron-up {
+  transition: 200ms ease;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+}
+
+.dropdown-button > .fa-chevron-up.active {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  /* top: 100%; */
+  background: var(--bg-light);
+  width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  z-index: 20;
+  margin-top: 40px;
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: start;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-gray);
+}
+
+.dropdown-item:last-of-type:hover {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.dropdown-content.active {
+  display: block;
+}
+
+.dropdown-item.selected {
+  color: var(--primary-color);
+}
+
+#movie-status input {
+  display: none;
+  padding: 0;
+}
+
+#movie-status {
+  --container_width: 250px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--border-radius);
+  background: var(--bg-gray);
+  color: var(--bg-dark);
+  width: var(--container_width);
+  overflow: hidden;
+}
+
+#movie-status label {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 14pt;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  font-weight: 400;
+  text-align: center;
+}
+
+.selection {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: calc(var(--container_width) / 2);
+  /*   width: calc(var(--container_width) / 3); */
+  z-index: 0;
+  left: 0;
+  top: 0;
+  transition: 0.15s ease;
+}
+
+#movie-status label:has(input:checked) {
+  color: var(--bg-light);
+}
+
+#movie-status label:has(input:checked) ~ .selection {
+  background: var(--bg-dark);
+  display: inline-block;
+}
+
+/* #movie-status label:nth-child(1):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 0 / 3));
+}
+
+#movie-status label:nth-child(2):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 1 / 3));
+}
+
+#movie-status label:nth-child(3):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 2 / 3));
+} */
+
+#movie-status label:nth-child(1):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 0 / 2));
+}
+
+#movie-status label:nth-child(2):has(input:checked) ~ .selection {
+  transform: translateX(calc(var(--container_width) * 1 / 2));
+}

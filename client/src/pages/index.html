@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miromax</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/content.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link rel="stylesheet" href="../css/component.css" />
+    <link rel="stylesheet" href="../css/button.css" />
+    <link rel="stylesheet" href="../css/loader.css" />
+    <link rel="stylesheet" href="../css/toast.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="../css/trailer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+
+    <div class="modal-overlay" data-close="true" id="modal-overlay">
+      <i class="fa-solid fa-xmark icon-close"></i>
+      <div id="modal-auth" class="modal">
+        <div class="form-container sign-up">
+          <form id="register-form">
+            <h1>Створити аккаунт</h1>
+            <span>Введіть наступні дані для реєстрації</span>
+            <div class="input-container">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="password-container">
+              <input
+                type="password"
+                class="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <i class="fas fa-eye toggle-password" data-toggle="register"></i>
+            </div>
+            <button id="register" type="button">Зареєструватись</button>
+          </form>
+        </div>
+        <div class="form-container sign-in">
+          <form id="login-form">
+            <h1>Увійти</h1>
+            <span>Введіть наступні дані для входу </span>
+            <div class="input-container">
+              <input
+                type="text"
+                id="usernameOrEmail"
+                name="username"
+                placeholder="Username або Email"
+                required
+              />
+            </div>
+            <div class="password-container">
+              <input
+                type="password"
+                class="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <i class="fas fa-eye toggle-password" data-toggle="login"></i>
+            </div>
+            <a href="#">Забули пароль?</a>
+            <button id="login" type="button">Увійти</button>
+          </form>
+        </div>
+        <div class="toggle-container">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h1>З поверненням!</h1>
+              <p>Введіть свої персональні дані, щоб увійти в систему</p>
+              <button class="hidden" id="login-toggle">Увійти</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+              <h1>Вперше тут?</h1>
+              <p>Зареєструйся, щоб отримати доступ до функцій сайту</p>
+              <button class="hidden" id="register-toggle">
+                Зареєструватися
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-location" class="modal">
+        <div class="modal-content" id="cinema-locations">
+          <h2>Оберіть локацію кінотеатру</h2>
+        </div>
+      </div>
+
+      <div id="modal-filter" class="modal">
+        <div class="modal-content" id="cinema-locations">
+          <h2>Відфільтрувати фільми</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div
+      class="trailer-container"
+      data-closed="true"
+      id="modal-trialer-overlay"
+    >
+      <iframe
+        id="youtube-trailer"
+        src=""
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+      <i class="fa-solid fa-xmark icon-close"></i>
+    </div> -->
+
+    <div id="loader-overlay" class="loader-overlay overlay-hidden">
+      <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <svg width="0" height="0" class="svg">
+        <defs>
+          <filter id="uib-jelly-ooze">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+              result="ooze"
+            />
+            <feBlend in="SourceGraphic" in2="ooze" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <div id="toasts"></div>
+
+    <script src="../js/toast.js" type="module"></script>
+    <script src="../js/setup.js" type="module"></script>
+    <script src="../js/trailer.js" type="module"></script>
+    <script src="../js/modal.js" type="module"></script>
+    <script src="../js/auth.js" type="module"></script>
+    <script src="../js/index.js" type="module"></script>
+    <script src="../js/movie.js" type="module"></script>
+  </body>
+</html>

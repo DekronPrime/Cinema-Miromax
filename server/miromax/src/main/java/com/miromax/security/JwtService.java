@@ -46,10 +46,22 @@ public class JwtService {
                 .parseSignedClaims(token)
                 .getPayload();
     }
+//    public String generateToken(User user) {
+//        return Jwts
+//                .builder()
+//                .subject(user.getUsername())
+//                .issuedAt(new Date(System.currentTimeMillis()))
+//                .expiration(new Date(System.currentTimeMillis() + 30*60*1000))
+//                .signWith(getSigningKey())
+//                .compact();
+//    }
+
     public String generateToken(User user) {
         return Jwts
                 .builder()
                 .subject(user.getUsername())
+                .claim("role", user.getRole())
+                .claim("avatar", user.getAvatarUrl())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 30*60*1000))
                 .signWith(getSigningKey())

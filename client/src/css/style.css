@@ -1,0 +1,49 @@
+:root {
+  --gradient-miro: linear-gradient(
+    0deg,
+    rgba(82, 186, 219, 1) 0%,
+    rgba(112, 161, 222, 1) 26%,
+    rgba(167, 119, 227, 1) 66%,
+    rgba(205, 89, 231, 1) 100%
+  );
+  --gradient-miro-rotated: linear-gradient(
+    90deg,
+    rgba(82, 186, 219, 1) 0%,
+    rgba(112, 161, 222, 1) 26%,
+    rgba(167, 119, 227, 1) 66%,
+    rgba(205, 89, 231, 1) 100%
+  );
+  --gradient-orange: radial-gradient(
+    circle,
+    rgba(241, 167, 41, 1) 0%,
+    rgba(235, 129, 23, 1) 49%,
+    rgba(255, 75, 5, 1) 100%
+  );
+  --font-franklin: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  --font-gill: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  --font-segoe: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --border-radius: 7.5px;
+  --bg-dark: #2d2d2d;
+  --bg-light: #f3f3f3;
+  --bg-gray: #ddd8d8;
+  --primary-color: darkmagenta;
+  --success-color: limegreen;
+  --error-color: crimson;
+}
+
+/* *::selection {
+  background: var(--bg-dark);
+  color: orange;
+} */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--gradient-miro-rotated);
+}
